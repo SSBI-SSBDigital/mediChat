@@ -1,0 +1,10 @@
+flask
+flask_cors
+pytesseract
+PIL
+openai
+os
+googletrans
+fpdf
+docx
+io
