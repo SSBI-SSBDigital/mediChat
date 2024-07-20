@@ -22,8 +22,8 @@ CORS(app)
 pytesseract.pytesseract.tesseract_cmd = os.path.join(os.getcwd(), 'Tesseract-OCR', 'tesseract.exe')
 
 # Set your OpenAI API key
-openai.api_key = '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'
 
+ 
 # Initialize the translator
 translator = Translator()
 
