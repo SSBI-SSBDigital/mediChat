@@ -1,6 +1,3 @@
-
-
-# newwwwwwwwww from flask import Flask, request, jsonify, send_file, make_response
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import pytesseract
@@ -23,7 +20,7 @@ pytesseract.pytesseract.tesseract_cmd = os.path.join(os.getcwd(), 'Tesseract-OCR
 
 # Set your OpenAI API key
 
- 
+
 # Initialize the translator
 translator = Translator()
 
@@ -153,6 +150,7 @@ def generate_pdf_report(content, annotations, annotated_image_path, pdf_path):
 def analyze():
     file = request.files['file']
     question = request.form.get('question', '')
+    language = request.form.get('language', 'en')  # Default to English
 
     file_path = os.path.join(UPLOAD_FOLDER, file.filename)
     file.save(file_path)
@@ -170,6 +168,9 @@ def analyze():
 
     if "report" in question.lower() or "test result" in question.lower() or "analysis" in question.lower():
         response = ask_openai(question, text)
+
+        # Translate response for user
+        translated_response = translator.translate(response, dest=language).text
         
         # Annotations based on the response
         annotations = []
@@ -219,17 +220,19 @@ def analyze():
         pdf_filename = f'Medical_Report_{timestamp}.pdf'
         pdf_path = os.path.join(REPORT_FOLDER, pdf_filename)
         
+        # Generate PDF report in English
         generate_pdf_report(response, annotations, annotated_image_path, pdf_path)
 
         # Create a download link
         download_link = f"{request.host_url}download/{pdf_filename}"
 
         # Return the chatbot response along with the download link
-        return jsonify({"response": response, "download_link": download_link}), 200
+        return jsonify({"response": translated_response, "download_link": download_link}), 200
     else:
         response = ask_openai(question)
+        translated_response = translator.translate(response, dest=language).text
 
-    return jsonify({"response": response})
+    return jsonify({"response": translated_response})
 
 @app.route('/download/<filename>', methods=['GET'])
 def download(filename):
@@ -237,9 +240,3 @@ def download(filename):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
-
-
