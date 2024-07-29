@@ -201,7 +201,7 @@ const PDFPreview: React.FC<{ url: string }> = ({ url }) => {
 
   return (
     <Box sx={{ ...containerStyle, p: 2 }}>
-      {/* <Box sx={pdfStyle}>
+      <Box sx={pdfStyle}>
         <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
@@ -216,8 +216,7 @@ const PDFPreview: React.FC<{ url: string }> = ({ url }) => {
           shape="rounded"
           disabled={numPages === 0}
         />
-      </Box> */}
-      <iframe src={pdfUrl} width="100%" height="600"></iframe>
+      </Box>
     </Box>
   );
 };
