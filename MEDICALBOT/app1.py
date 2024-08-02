@@ -10,6 +10,10 @@ import fitz  # PyMuPDF
 from docx import Document
 import io
 from datetime import datetime
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -19,6 +23,8 @@ CORS(app)
 pytesseract.pytesseract.tesseract_cmd = os.path.join(os.getcwd(), 'Tesseract-OCR', 'tesseract.exe')
 
 # Set your OpenAI API key
+openai.api_key =  os.getenv('OPENAI_API_KEY')
+
 # Initialize the translator
 translator = Translator()
 
