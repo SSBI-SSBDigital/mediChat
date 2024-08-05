@@ -1,7 +1,3 @@
-// import styles from "./page.module.css";
-// export default function Home() {
-//   return <main className={styles.main}>page 11</main>;
-// }
 "use client";
 import React, { useRef, useState } from "react";
 import {
@@ -17,10 +13,14 @@ import {
   FormControl,
   MenuItem,
 } from "@mui/material";
-import { IconPaperclip, IconSend } from "@tabler/icons-react";
-import shortenFileName from "@/hooks/shortenFileName";
+
 import axios from "axios";
-import PDFPreview from "./PdfView";
+
+import { IconPaperclip, IconSend } from "@tabler/icons-react";
+
+import shortenFileName from "@/hooks/shortenFileName";
+
+import PDFPreview from "./PDFPreview";
 
 interface Message {
   sender: "user" | "chatbot";
@@ -28,7 +28,7 @@ interface Message {
   report?: string;
 }
 
-const Chatbot: React.FC = () => {
+const Home: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -56,10 +56,6 @@ const Chatbot: React.FC = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/analyze`,
         formData
       );
-      // const response = await axios.post(
-      //   `http://127.0.0.1:5000/analyze`,
-      //   formData
-      // );
 
       const chatbotResponse = response.data.response;
       const fileLink = response.data.download_link;
@@ -363,4 +359,4 @@ const UserInput: React.FC<UserInputProps> = ({ simulateChatbotResponse }) => {
   );
 };
 
-export default Chatbot;
+export default Home;
