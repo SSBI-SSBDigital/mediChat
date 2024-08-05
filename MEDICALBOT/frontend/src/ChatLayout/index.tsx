@@ -24,8 +24,9 @@ import {
   IconLayoutSidebarLeftExpandFilled,
   IconLayoutSidebarLeftCollapseFilled,
   IconPencilPlus,
+  IconSearch,
+  IconUserCircle,
 } from "@tabler/icons-react";
-import { IconProfile, IconSearch } from "@/SvgIcon";
 
 // Constants
 const drawerWidth = 240;
@@ -34,13 +35,12 @@ const drawerWidth = 240;
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: "20px",
-  // borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.black, 0.15),
   "&:hover": { backgroundColor: alpha(theme.palette.common.black, 0.25) },
   marginLeft: 0,
   width: "100%",
   height: "35px",
-  // color: "#FFFFFF",
+
   [theme.breakpoints.up("sm")]: { marginLeft: theme.spacing(1), width: "auto" },
 }));
 
@@ -126,8 +126,8 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
 }));
 
 // Main Layout Component
-const ChatLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
-  const [open, setOpen] = React.useState(true);
+const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
+  const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -230,19 +230,6 @@ const ChatLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
               <ListItemText primary="New chat" />
             </ListItemButton>
           </ListItem>
-          {/* {["New chat"].map((text, index) => (
-            <ListItem
-              key={text + index}
-              sx={{ padding: "5px 8px", borderRadius: "8px" }}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <IconPencilPlus color="#FFFFFF" />
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))} */}
         </List>
       </Drawer>
       <Main open={open}>
@@ -251,7 +238,7 @@ const ChatLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              onClick={handleDrawerOpen}
+              // onClick={handleDrawerOpen}
               edge="start"
               sx={{ mr: 1, ...(open && { display: "none" }) }}
             >
@@ -271,6 +258,7 @@ const ChatLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
                 <IconSearch size="18" />
               </SearchIconWrapper>
               <StyledInputBase
+                disabled
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
               />
@@ -285,7 +273,7 @@ const ChatLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
                 color="inherit"
                 sx={{ background: "#ffffff55 !important" }}
               >
-                <IconProfile size="22" />
+                <IconUserCircle size="22" />
               </IconButton>
             </Box>
           </Toolbar>
@@ -297,4 +285,4 @@ const ChatLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   );
 };
 
-export default ChatLayout;
+export default Layout;
