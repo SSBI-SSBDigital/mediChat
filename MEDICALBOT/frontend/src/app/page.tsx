@@ -251,6 +251,10 @@ const UserInput: React.FC<UserInputProps> = ({ simulateChatbotResponse }) => {
   };
 
   const handleSendMessage = () => {
+    if (!file) {
+      alert("Please select a file");
+    }
+
     if (input.trim()) {
       simulateChatbotResponse(input, file, language);
       setInput("");
