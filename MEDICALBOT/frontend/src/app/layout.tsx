@@ -6,8 +6,8 @@ import ChatLayout from "@/ChatLayout";
 const inter = Inter({ weight: "400", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Bank statement analyzer",
-  description: "Bank statement analyzer web aplication",
+  title: "Medi Chat",
+  description: "Medi Chat web aplication",
 };
 
 export default function RootLayout({
