@@ -2,9 +2,12 @@ flask
 flask_cors
 pytesseract
 pillow
-openai
-os
-googletrans
+openai==0.28.0
 fpdf
 docx
 io
+fitz
+CORS
+tools
+python-docx
+googletrans==4.0.0-rc1
