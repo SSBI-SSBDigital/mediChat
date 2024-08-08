@@ -182,8 +182,6 @@ def analyze():
             annotations.append({"position": (403, 245), "text": "Brain Issue"})
         if "eyes" in response.lower():
             annotations.append({"position": (381, 273), "text": "Eyes Issue"})
-        if "ears" in response.lower():
-            annotations.append({"position": (361, 277), "text": "Ears Issue"})
         if "nose" in response.lower():
             annotations.append({"position": (399, 283), "text": "Nose Issue"})
         if "mouth" in response.lower():
