@@ -5,7 +5,6 @@ pillow
 openai==0.28.0
 fpdf
 docx
-io
 fitz
 CORS
 tools
